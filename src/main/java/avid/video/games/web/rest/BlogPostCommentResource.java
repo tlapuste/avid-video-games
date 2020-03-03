@@ -1,9 +1,11 @@
 package avid.video.games.web.rest;
 
 import avid.video.games.domain.BlogPostComment;
+import avid.video.games.domain.User;
+import avid.video.games.repository.UserRepository;
+import avid.video.games.security.SecurityUtils;
 import avid.video.games.service.BlogPostCommentService;
 import avid.video.games.web.rest.errors.BadRequestAlertException;
-
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -13,10 +15,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -38,9 +40,11 @@ public class BlogPostCommentResource {
     private String applicationName;
 
     private final BlogPostCommentService blogPostCommentService;
+    private final UserRepository userRepository;
 
-    public BlogPostCommentResource(BlogPostCommentService blogPostCommentService) {
+    public BlogPostCommentResource(BlogPostCommentService blogPostCommentService, UserRepository userRepository) {
         this.blogPostCommentService = blogPostCommentService;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -51,11 +55,20 @@ public class BlogPostCommentResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/blog-post-comments")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<BlogPostComment> createBlogPostComment(@RequestBody BlogPostComment blogPostComment) throws URISyntaxException {
         log.debug("REST request to save BlogPostComment : {}", blogPostComment);
         if (blogPostComment.getId() != null) {
             throw new BadRequestAlertException("A new blogPostComment cannot already have an ID", ENTITY_NAME, "idexists");
         }
+
+        // Get get the user's Id and add them to the blogPostComment
+        String login = SecurityUtils.getCurrentUserLogin().get();
+        User user = userRepository.findOneByLogin(login)
+            .orElseThrow(() -> new BadRequestAlertException("A user with authority ROLE_USER must be identifiable by a unique login", ENTITY_NAME, "nologin"));
+
+        blogPostComment.setCommenter(user);
+
         BlogPostComment result = blogPostCommentService.save(blogPostComment);
         return ResponseEntity.created(new URI("/api/blog-post-comments/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
@@ -72,6 +85,7 @@ public class BlogPostCommentResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/blog-post-comments")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<BlogPostComment> updateBlogPostComment(@RequestBody BlogPostComment blogPostComment) throws URISyntaxException {
         log.debug("REST request to update BlogPostComment : {}", blogPostComment);
         if (blogPostComment.getId() == null) {
