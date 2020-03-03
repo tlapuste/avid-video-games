@@ -1,0 +1,35 @@
+{
+    "name": "BlogPostComment",
+    "fields": [
+        {
+            "fieldName": "body",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "blogUser",
+            "otherEntityRelationshipName": "blogPostComment",
+            "relationshipName": "commenter",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "blogPost",
+            "otherEntityRelationshipName": "blogPostComment",
+            "relationshipName": "comment",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200303071300",
+    "entityTableName": "blog_post_comment",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
