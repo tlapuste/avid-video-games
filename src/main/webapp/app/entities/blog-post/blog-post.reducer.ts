@@ -12,6 +12,7 @@ import { cleanEntity } from 'app/shared/util/entity-utils';
 import { REQUEST, SUCCESS, FAILURE } from 'app/shared/reducers/action-type.util';
 
 import { IBlogPost, defaultValue } from 'app/shared/model/blog-post.model';
+import { IBlogPostVM } from 'app/shared/model/blog-post-vm.model';
 
 export const ACTION_TYPES = {
   FETCH_BLOGPOST_LIST: 'blogPost/FETCH_BLOGPOST_LIST',
@@ -113,19 +114,37 @@ const apiUrl = 'api/blog-posts';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IBlogPost> = (page, size, sort) => {
-  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+// export const getEntities: ICrudGetAllAction<IBlogPost> = (page, size, sort) => {
+//   const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+//   return {
+//     type: ACTION_TYPES.FETCH_BLOGPOST_LIST,
+//     payload: axios.get<IBlogPost>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+//   };
+// };
+
+// export const getEntity: ICrudGetAction<IBlogPost> = id => {
+//   const requestUrl = `${apiUrl}/${id}`;
+//   return {
+//     type: ACTION_TYPES.FETCH_BLOGPOST,
+//     payload: axios.get<IBlogPost>(requestUrl)
+//   };
+// };
+
+const publicBlogPostsApiUrl = '/api/blog-posts-public';
+
+export const getEntities: ICrudGetAllAction<IBlogPostVM> = (page, size, sort) => {
+  const requestUrl = `${publicBlogPostsApiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
   return {
     type: ACTION_TYPES.FETCH_BLOGPOST_LIST,
-    payload: axios.get<IBlogPost>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+    payload: axios.get<IBlogPostVM>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
   };
 };
 
-export const getEntity: ICrudGetAction<IBlogPost> = id => {
-  const requestUrl = `${apiUrl}/${id}`;
+export const getEntity: ICrudGetAction<IBlogPostVM> = id => {
+  const requestUrl = `${publicBlogPostsApiUrl}/${id}`;
   return {
     type: ACTION_TYPES.FETCH_BLOGPOST,
-    payload: axios.get<IBlogPost>(requestUrl)
+    payload: axios.get<IBlogPostVM>(requestUrl)
   };
 };
 

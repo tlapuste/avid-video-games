@@ -106,9 +106,9 @@ public class BlogPostResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of blogPostVMs in body.
      */
     @GetMapping("/blog-posts-public")
-    public ResponseEntity<List<BlogPostVM>> getAllPublicBlogPosts(Pageable pageable) {
-        log.debug("REST request to get a page of BlogPostVMs");
-        Page<BlogPostVM> page = blogPostService.findAllPublic(pageable);
+    public ResponseEntity<List<BlogPost>> getAllPublicBlogPosts(Pageable pageable) {
+        log.debug("REST request to get a page of BlogPosts");
+        Page<BlogPost> page = blogPostService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

@@ -1,10 +1,10 @@
-import { IBlogUser } from 'app/shared/model/blog-user.model';
 import { IBlogPost } from 'app/shared/model/blog-post.model';
+import { IUser } from 'app/shared/model/user.model';
 
 export interface IBlogPostComment {
   id?: number;
   body?: string;
-  commenter?: IBlogUser;
+  commenter?: IUser;
   comment?: IBlogPost;
 }
 

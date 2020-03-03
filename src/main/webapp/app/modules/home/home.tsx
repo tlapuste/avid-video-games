@@ -31,8 +31,8 @@ export const Home = (props: IHomeProp) => {
                 sign in
               </Link>
               , you can try the default accounts:
-              <br />- Administrator (blogger) (login=&quot;admin&quot; and password=&quot;admin&quot;)
-              <br />- User (commenter) (login=&quot;user&quot; and password=&quot;user&quot;).
+              <br />- Administrator (to create and edit blog entries) (login=&quot;admin&quot; and password=&quot;admin&quot;)
+              <br />- User (to comment on the blog entries) (login=&quot;user&quot; and password=&quot;user&quot;).
             </Alert>
 
             <Alert color="warning">
@@ -53,7 +53,7 @@ export const Home = (props: IHomeProp) => {
         </p>
       </Col>
       <Col md="3" className="pad">
-        <span className="hipster rounded" />
+        {/*<span className="hipster rounded" />*/}
       </Col>
     </Row>
   );

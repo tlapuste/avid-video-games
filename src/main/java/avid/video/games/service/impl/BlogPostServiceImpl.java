@@ -82,19 +82,6 @@ public class BlogPostServiceImpl implements BlogPostService {
     }
 
     /**
-     * Get all the blogPosts.
-     *
-     * @param pageable the pagination information.
-     * @return the list of entities.
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public Page<BlogPostVM> findAllPublic(Pageable pageable) {
-        log.debug("Request to get all BlogPosts");
-        return blogPostRepository.findAllPublic(pageable);
-    }
-
-    /**
      * Get the "id" blogPostVM.
      *
      * @param id the id of the entity.

@@ -37,14 +37,6 @@ public interface BlogPostService {
     Optional<BlogPost> findOne(Long id);
 
     /**
-     * Get all the blogPosts.
-     *
-     * @param pageable the pagination information.
-     * @return the list of entities.
-     */
-    Page<BlogPostVM> findAllPublic(Pageable pageable);
-
-    /**
      * Get the "id" blogPost.
      *
      * @param id the id of the entity.
