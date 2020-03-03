@@ -3,6 +3,7 @@ package avid.video.games.web.rest;
 import avid.video.games.domain.BlogPost;
 import avid.video.games.service.BlogPostService;
 import avid.video.games.web.rest.errors.BadRequestAlertException;
+import avid.video.games.web.rest.vm.BlogPostVM;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -96,6 +97,33 @@ public class BlogPostResource {
         Page<BlogPost> page = blogPostService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    /**
+     * {@code GET  /blog-posts-public} : get all the blog posts as an anonymous user
+     *
+     * @param pageable the pagination information.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of blogPostVMs in body.
+     */
+    @GetMapping("/blog-posts-public")
+    public ResponseEntity<List<BlogPostVM>> getAllPublicBlogPosts(Pageable pageable) {
+        log.debug("REST request to get a page of BlogPostVMs");
+        Page<BlogPostVM> page = blogPostService.findAllPublic(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    /**
+     * {@code GET  /blog-posts-public/:id} : get the "id" blogPostVM.
+     *
+     * @param id the id of the blogPostVM to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the blogPostVM, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/blog-posts-public/{id}")
+    public ResponseEntity<BlogPostVM> getPublicBlogPost(@PathVariable Long id) {
+        log.debug("REST request to get BlogPostVM : {}", id);
+        Optional<BlogPostVM> blogPost = blogPostService.findPublicOne(id);
+        return ResponseUtil.wrapOrNotFound(blogPost);
     }
 
     /**

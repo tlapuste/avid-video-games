@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
 import { IUser } from 'app/shared/model/user.model';
-import { getEntities as getBlogUsers } from 'app/entities/blog-user/blog-user.reducer';
+// import { getEntities as getBlogUsers } from 'app/entities/blog-user/blog-user.reducer';
 import { IBlogPost } from 'app/shared/model/blog-post.model';
 import { getEntities as getBlogPosts } from 'app/entities/blog-post/blog-post.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './blog-post-comment.reducer';
@@ -23,7 +23,7 @@ export const BlogPostCommentUpdate = (props: IBlogPostCommentUpdateProps) => {
   const [commentId, setCommentId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
-  const { blogPostCommentEntity, blogUsers, blogPosts, loading, updating } = props;
+  const { blogPostCommentEntity, /*blogUsers,*/ blogPosts, loading, updating } = props;
 
   const handleClose = () => {
     props.history.push('/blog-post-comment');
@@ -34,7 +34,7 @@ export const BlogPostCommentUpdate = (props: IBlogPostCommentUpdateProps) => {
       props.getEntity(props.match.params.id);
     }
 
-    props.getBlogUsers();
+    // props.getBlogUsers();
     props.getBlogPosts();
   }, []);
 
@@ -84,19 +84,19 @@ export const BlogPostCommentUpdate = (props: IBlogPostCommentUpdateProps) => {
                 </Label>
                 <AvField id="blog-post-comment-body" type="text" name="body" />
               </AvGroup>
-              <AvGroup>
-                <Label for="blog-post-comment-commenter">Commenter</Label>
-                <AvInput id="blog-post-comment-commenter" type="select" className="form-control" name="commenter.id">
-                  <option value="" key="0" />
-                  {blogUsers
-                    ? blogUsers.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
+              {/*<AvGroup>*/}
+              {/*  <Label for="blog-post-comment-commenter">Commenter</Label>*/}
+              {/*  <AvInput id="blog-post-comment-commenter" type="select" className="form-control" name="commenter.id">*/}
+              {/*    <option value="" key="0" />*/}
+              {/*    {blogUsers*/}
+              {/*      ? blogUsers.map(otherEntity => (*/}
+              {/*          <option value={otherEntity.id} key={otherEntity.id}>*/}
+              {/*            {otherEntity.id}*/}
+              {/*          </option>*/}
+              {/*        ))*/}
+              {/*      : null}*/}
+              {/*  </AvInput>*/}
+              {/*</AvGroup>*/}
               <AvGroup>
                 <Label for="blog-post-comment-comment">Comment</Label>
                 <AvInput id="blog-post-comment-comment" type="select" className="form-control" name="comment.id">
@@ -129,7 +129,7 @@ export const BlogPostCommentUpdate = (props: IBlogPostCommentUpdateProps) => {
 };
 
 const mapStateToProps = (storeState: IRootState) => ({
-  blogUsers: storeState.blogUser.entities,
+  // blogUsers: storeState.blogUser.entities,
   blogPosts: storeState.blogPost.entities,
   blogPostCommentEntity: storeState.blogPostComment.entity,
   loading: storeState.blogPostComment.loading,
@@ -138,7 +138,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
-  getBlogUsers,
+  // getBlogUsers,
   getBlogPosts,
   getEntity,
   updateEntity,

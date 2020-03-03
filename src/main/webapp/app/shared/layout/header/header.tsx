@@ -35,7 +35,7 @@ const Header = (props: IHeaderProps) => {
 
   return (
     <div id="app-header">
-      {renderDevRibbon()}
+      {/*{renderDevRibbon()}*/}
       <LoadingBar className="loading-bar" />
       <Navbar dark expand="sm" fixed="top" className="bg-dark">
         <NavbarToggler aria-label="Menu" onClick={toggleMenu} />
@@ -43,7 +43,7 @@ const Header = (props: IHeaderProps) => {
         <Collapse isOpen={menuOpen} navbar>
           <Nav id="header-tabs" className="ml-auto" navbar>
             <Home />
-            {props.isAuthenticated && <EntitiesMenu />}
+            {props.isAuthenticated && props.isAdmin && <EntitiesMenu />}
             {props.isAuthenticated && props.isAdmin && (
               <AdminMenu showSwagger={props.isSwaggerEnabled} showDatabase={!props.isInProduction} />
             )}

@@ -31,7 +31,7 @@ export interface IRootState {
   readonly passwordReset: PasswordResetState;
   readonly password: PasswordState;
   readonly settings: SettingsState;
-  readonly blogUser: BlogUserState;
+  // readonly blogUser: BlogUserState;
   readonly blogPost: BlogPostState;
   readonly blogPostComment: BlogPostCommentState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
@@ -48,7 +48,7 @@ const rootReducer = combineReducers<IRootState>({
   passwordReset,
   password,
   settings,
-  blogUser,
+  // blogUser,
   blogPost,
   blogPostComment,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
