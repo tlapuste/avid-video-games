@@ -1,0 +1,44 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "avid.video.games"
+    },
+    "jhipsterVersion": "6.7.1",
+    "applicationType": "monolith",
+    "baseName": "avid",
+    "packageName": "avid.video.games",
+    "packageFolder": "avid/video/games",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": true,
+    "jwtSecretKey": "YzIxNTM5ZWMzN2FlNWRhN2RkNTBiYjc2NjkwY2QzZDViNjNhN2Q2OTQwMTVmZWQyYjIzODc3ZWZiMWFmZDA5ZDg0YjBmZTVmYTZjZDZlZjI3NmExMGIyZDU5ZTAzMjI0OTE3ZjE5YzFkZmNlYzc2Zjg4OTE1Nzc2OGY4MDg1MzQ=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "react",
+    "clientTheme": "materia",
+    "clientThemeVariant": "dark",
+    "creationTimestamp": 1583201999170,
+    "testFrameworks": ["gatling", "cucumber", "protractor"],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-swagger-cli",
+        "version": "3.0.1"
+      }
+    ],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}
