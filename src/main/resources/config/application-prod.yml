@@ -33,19 +33,15 @@ spring:
       enabled: false
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://localhost:3306/avid?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
-    username: root
+    url: jdbc:h2:mem:avid;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: avid
     password:
     hikari:
       poolName: Hikari
       auto-commit: false
-      data-source-properties:
-        cachePrepStmts: true
-        prepStmtCacheSize: 250
-        prepStmtCacheSqlLimit: 2048
-        useServerPrepStmts: true
   jpa:
-    show-sql: false
+    database-platform: io.github.jhipster.domain.util.FixedH2Dialect
+    show-sql: true
     properties:
       hibernate.id.new_generator_mappings: true
       hibernate.connection.provider_disables_autocommit: true

@@ -14,7 +14,7 @@
     "websocket": false,
     "databaseType": "sql",
     "devDatabaseType": "h2Memory",
-    "prodDatabaseType": "mysql",
+    "prodDatabaseType": "h2Memory",
     "searchEngine": false,
     "messageBroker": false,
     "serviceDiscoveryType": false,
@@ -29,7 +29,7 @@
     "clientThemeVariant": "dark",
     "creationTimestamp": 1583201999170,
     "testFrameworks": ["gatling", "cucumber", "protractor"],
-    "jhiPrefix": "jhi",
+    "jhiPrefix": "avi",
     "entitySuffix": "",
     "dtoSuffix": "DTO",
     "otherModules": [

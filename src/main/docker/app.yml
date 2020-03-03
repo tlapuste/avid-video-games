@@ -6,11 +6,7 @@ services:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=prod,swagger
       - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
-      - SPRING_DATASOURCE_URL=jdbc:mysql://avid-mysql:3306/avid?useUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_URL=jdbc:h2:mem:avid;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
       - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
     ports:
       - 8080:8080
-  avid-mysql:
-    extends:
-      file: mysql.yml
-      service: avid-mysql
