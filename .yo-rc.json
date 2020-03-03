@@ -14,7 +14,7 @@
     "websocket": false,
     "databaseType": "sql",
     "devDatabaseType": "h2Memory",
-    "prodDatabaseType": "h2Memory",
+    "prodDatabaseType": "mysql",
     "searchEngine": false,
     "messageBroker": false,
     "serviceDiscoveryType": false,
