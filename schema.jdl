@@ -1,0 +1,27 @@
+entity BlogUser {
+	regionName String
+}
+
+entity BlogPost {
+	title String,
+    body String
+}
+
+entity BlogPostComment {
+	body String
+}
+
+relationship ManyToOne {
+	BlogPostComment{commenter} to BlogUser
+}
+
+relationship ManyToOne {
+	BlogPostComment{comment} to BlogPost
+}
+
+// Set pagination options
+paginate BlogPost, BlogPostComment with infinite-scroll
+
+// Set service options to all except few
+service all with serviceImpl except BlogUser
+

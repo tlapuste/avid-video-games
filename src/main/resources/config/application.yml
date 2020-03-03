@@ -36,7 +36,7 @@ management:
     export:
       # Prometheus is the default metrics backend
       prometheus:
-        enabled: true
+        enabled: false
         step: 60
     enable:
       http: true

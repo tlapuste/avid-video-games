@@ -59,7 +59,8 @@ public class WebConfigurerTest {
         webConfigurer.onStartup(servletContext);
 
         verify(servletContext).addFilter(eq("cachingHttpHeadersFilter"), any(CachingHttpHeadersFilter.class));
-        verify(servletContext, never()).addServlet(eq("H2Console"), any(WebServlet.class));
+//        verify(servletContext, never()).addServlet(eq("H2Console"), any(WebServlet.class));
+        verify(servletContext).addServlet(eq("H2Console"), any(WebServlet.class));
     }
 
     @Test

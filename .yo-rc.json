@@ -29,7 +29,7 @@
     "clientThemeVariant": "dark",
     "creationTimestamp": 1583201999170,
     "testFrameworks": ["gatling", "cucumber", "protractor"],
-    "jhiPrefix": "jhi",
+    "jhiPrefix": "avi",
     "entitySuffix": "",
     "dtoSuffix": "DTO",
     "otherModules": [
