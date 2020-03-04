@@ -14,9 +14,9 @@
                                  referencedColumnNames="id"
                                  referencedTableName="blog_user"/>
 
-        <addForeignKeyConstraint baseColumnNames="comment_id"
+        <addForeignKeyConstraint baseColumnNames="post_id"
                                  baseTableName="blog_post_comment"
-                                 constraintName="fk_blog_post_comment_comment_id"
+                                 constraintName="fk_blog_post_comment_post_id"
                                  referencedColumnNames="id"
                                  referencedTableName="blog_post"/>
 

@@ -22,7 +22,7 @@
             <column name="commenter_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="comment_id" type="bigint">
+            <column name="post_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->

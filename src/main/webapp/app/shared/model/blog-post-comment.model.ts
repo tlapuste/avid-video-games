@@ -5,7 +5,7 @@ export interface IBlogPostComment {
   id?: number;
   body?: string;
   commenter?: IUser;
-  comment?: IBlogPost;
+  post?: IBlogPost;
 }
 
 export const defaultValue: Readonly<IBlogPostComment> = {};

@@ -20,7 +20,7 @@ export interface IBlogPostCommentUpdateProps extends StateProps, DispatchProps, 
 
 export const BlogPostCommentUpdate = (props: IBlogPostCommentUpdateProps) => {
   const [commenterId, setCommenterId] = useState('0');
-  const [commentId, setCommentId] = useState('0');
+  const [postId, setPostId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
   const { blogPostCommentEntity, /*blogUsers,*/ blogPosts, loading, updating } = props;
@@ -84,22 +84,9 @@ export const BlogPostCommentUpdate = (props: IBlogPostCommentUpdateProps) => {
                 </Label>
                 <AvField id="blog-post-comment-body" type="text" name="body" />
               </AvGroup>
-              {/*<AvGroup>*/}
-              {/*  <Label for="blog-post-comment-commenter">Commenter</Label>*/}
-              {/*  <AvInput id="blog-post-comment-commenter" type="select" className="form-control" name="commenter.id">*/}
-              {/*    <option value="" key="0" />*/}
-              {/*    {blogUsers*/}
-              {/*      ? blogUsers.map(otherEntity => (*/}
-              {/*          <option value={otherEntity.id} key={otherEntity.id}>*/}
-              {/*            {otherEntity.id}*/}
-              {/*          </option>*/}
-              {/*        ))*/}
-              {/*      : null}*/}
-              {/*  </AvInput>*/}
-              {/*</AvGroup>*/}
               <AvGroup>
-                <Label for="blog-post-comment-comment">Comment</Label>
-                <AvInput id="blog-post-comment-comment" type="select" className="form-control" name="comment.id">
+                <Label for="blog-post-comment-post">Post</Label>
+                <AvInput id="blog-post-comment-post" type="select" className="form-control" name="post.id">
                   <option value="" key="0" />
                   {blogPosts
                     ? blogPosts.map(otherEntity => (

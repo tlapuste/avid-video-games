@@ -104,7 +104,7 @@ export const BlogPostComment = (props: IBlogPostCommentProps) => {
                     Commenter <FontAwesomeIcon icon="sort" />
                   </th>
                   <th>
-                    Comment <FontAwesomeIcon icon="sort" />
+                    Post <FontAwesomeIcon icon="sort" />
                   </th>
                   <th />
                 </tr>
@@ -126,11 +126,7 @@ export const BlogPostComment = (props: IBlogPostCommentProps) => {
                       )}
                     </td>
                     <td>
-                      {blogPostComment.comment ? (
-                        <Link to={`blog-post/${blogPostComment.comment.id}`}>{blogPostComment.comment.id}</Link>
-                      ) : (
-                        ''
-                      )}
+                      {blogPostComment.post ? <Link to={`blog-post/${blogPostComment.post.id}`}>{blogPostComment.post.id}</Link> : ''}
                     </td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">

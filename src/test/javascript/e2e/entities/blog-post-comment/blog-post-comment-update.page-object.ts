@@ -6,7 +6,7 @@ export default class BlogPostCommentUpdatePage {
   cancelButton: ElementFinder = element(by.id('cancel-save'));
   bodyInput: ElementFinder = element(by.css('input#blog-post-comment-body'));
   commenterSelect: ElementFinder = element(by.css('select#blog-post-comment-commenter'));
-  commentSelect: ElementFinder = element(by.css('select#blog-post-comment-comment'));
+  postSelect: ElementFinder = element(by.css('select#blog-post-comment-post'));
 
   getPageTitle() {
     return this.pageTitle;
@@ -39,23 +39,23 @@ export default class BlogPostCommentUpdatePage {
     return this.commenterSelect.element(by.css('option:checked')).getText();
   }
 
-  async commentSelectLastOption() {
-    await this.commentSelect
+  async postSelectLastOption() {
+    await this.postSelect
       .all(by.tagName('option'))
       .last()
       .click();
   }
 
-  async commentSelectOption(option) {
-    await this.commentSelect.sendKeys(option);
+  async postSelectOption(option) {
+    await this.postSelect.sendKeys(option);
   }
 
-  getCommentSelect() {
-    return this.commentSelect;
+  getPostSelect() {
+    return this.postSelect;
   }
 
-  async getCommentSelectedOption() {
-    return this.commentSelect.element(by.css('option:checked')).getText();
+  async getPostSelectedOption() {
+    return this.postSelect.element(by.css('option:checked')).getText();
   }
 
   async save() {

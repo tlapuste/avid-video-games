@@ -64,7 +64,7 @@ describe('BlogPostComment e2e test', () => {
     await blogPostCommentUpdatePage.setBodyInput('body');
     expect(await blogPostCommentUpdatePage.getBodyInput()).to.match(/body/);
     await blogPostCommentUpdatePage.commenterSelectLastOption();
-    await blogPostCommentUpdatePage.commentSelectLastOption();
+    await blogPostCommentUpdatePage.postSelectLastOption();
     await waitUntilDisplayed(blogPostCommentUpdatePage.saveButton);
     await blogPostCommentUpdatePage.save();
     await waitUntilHidden(blogPostCommentUpdatePage.saveButton);

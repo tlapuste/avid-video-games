@@ -16,7 +16,7 @@ relationship ManyToOne {
 }
 
 relationship ManyToOne {
-	BlogPostComment{comment} to BlogPost
+	BlogPostComment{post} to BlogPost
 }
 
 // Set pagination options

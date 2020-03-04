@@ -31,8 +31,8 @@ export const BlogPostCommentDetail = (props: IBlogPostCommentDetailProps) => {
           <dd>{blogPostCommentEntity.body}</dd>
           <dt>Commenter</dt>
           <dd>{blogPostCommentEntity.commenter ? blogPostCommentEntity.commenter.id : ''}</dd>
-          <dt>Comment</dt>
-          <dd>{blogPostCommentEntity.comment ? blogPostCommentEntity.comment.id : ''}</dd>
+          <dt>Post</dt>
+          <dd>{blogPostCommentEntity.post ? blogPostCommentEntity.post.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/blog-post-comment" replace color="info">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>
