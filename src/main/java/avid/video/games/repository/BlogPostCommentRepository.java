@@ -24,5 +24,5 @@ public interface BlogPostCommentRepository extends JpaRepository<BlogPostComment
 //    inner join blog_user bu on bu.id=bpc.commenter_id
 //    where bp.id = 1;
 
-    List<BlogPostComment> findAllByComment(BlogPost blogPost);
+    List<BlogPostComment> findAllByPost(BlogPost blogPost);
 }
