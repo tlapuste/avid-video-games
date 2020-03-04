@@ -35,9 +35,9 @@ export const Home = (props: IHomeProp) => {
             </Alert>
 
             <Alert color="warning">
-              You do not have an account yet?&nbsp;
+              😭 No account yet?&nbsp; How are you going to leave comments?
               <Link to="/account/register" className="alert-link">
-                Register a new account
+                Register to think your voice really matters
               </Link>
             </Alert>
           </div>

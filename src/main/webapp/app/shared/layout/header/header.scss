@@ -52,7 +52,9 @@ Navbar styles
     width: auto;
     display: inline-block;
     img {
-      height: 45px;
+      height: 1.5em;
+      border-radius: 1.75px;
+      margin-bottom: 1px;
     }
   }
 }
@@ -64,6 +66,7 @@ Navbar styles
     color: $header-color-hover;
     text-decoration: none;
   }
+  margin-left: 10px;
 }
 
 .loading-bar {
