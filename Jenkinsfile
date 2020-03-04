@@ -5,7 +5,7 @@ node {
         checkout scm
     }
 
-    docker.image('openjdk:8').inside('-u root -e GRADLE_USER_HOME=.gradle') {
+    docker.image('jhipster/jhipster:v6.7.1').inside('-u jhipster -e GRADLE_USER_HOME=.gradle') {
         stage('check java') {
             sh "java -version"
         }
@@ -14,20 +14,17 @@ node {
             sh "chmod +x gradlew"
             sh "./gradlew clean --no-daemon"
         }
+        stage('nohttp') {
+            sh "./gradlew checkstyleNohttp --no-daemon"
+        }
 
-        stage('frontend e2e tests') {
-            try {
-                sh "npm run e2e"
-            } catch(err) {
-                throw err
-            } finally {
-                junit '**/build/**/TEST-*.xml'
-            }
+        stage('npm install') {
+            sh "./gradlew npm_install -PnodeInstall --no-daemon"
         }
 
         stage('backend tests') {
             try {
-                sh "./gradlew test -PnodeInstall --no-daemon"
+                sh "./gradlew test integrationTest -PnodeInstall --no-daemon"
             } catch(err) {
                 throw err
             } finally {
@@ -35,28 +32,32 @@ node {
             }
         }
 
+        stage('frontend tests') {
+            try {
+                sh "./gradlew npm_run_test-ci -PnodeInstall --no-daemon"
+            } catch(err) {
+                throw err
+            } finally {
+                junit '**/build/test-results/TESTS-*.xml'
+            }
+        }
+
         stage('packaging') {
-            sh "./gradlew bootRepackage -x test -Pprod -PnodeInstall --no-daemon"
-            archiveArtifacts artifacts: '**/build/libs/*.war', fingerprint: true
+            sh "./gradlew bootJar -x test -Pprod -PnodeInstall --no-daemon"
+            archiveArtifacts artifacts: '**/build/libs/*.jar', fingerprint: true
         }
 
         stage('quality analysis') {
-            withSonarQubeEnv('Sonar') {
+            withSonarQubeEnv('sonar') {
                 sh "./gradlew sonarqube --no-daemon"
             }
         }
     }
 
-    def dockerImageAvid
-    stage('build docker') {
-        sh "cp -R src/main/docker build/"
-        sh "cp build/libs/*.war build/docker/"
-        dockerImage = docker.build('avid', 'build/docker')
-    }
-
+    def dockerImage
     stage('publish docker') {
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-login') {
-            dockerImageAvid.push 'latest'
-        }
+        // A pre-requisite to this step is to setup authentication to the docker registry
+        // https://github.com/GoogleContainerTools/jib/tree/master/jib-gradle-plugin#authentication-methods
+        sh "./gradlew jib"
     }
 }
