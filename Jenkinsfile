@@ -15,6 +15,15 @@ node {
             sh "./gradlew clean --no-daemon"
         }
 
+        stage('frontend e2e tests') {
+            try {
+                sh "npm run e2e"
+            } catch(err) {
+                throw err
+            } finally {
+                junit '**/build/**/TEST-*.xml'
+            }
+        }
 
         stage('backend tests') {
             try {
