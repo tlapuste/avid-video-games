@@ -35,21 +35,13 @@ export const Home = (props: IHomeProp) => {
             </Alert>
 
             <Alert color="warning">
-              😭 No account yet?&nbsp; How are you going to leave comments?
+              😭 No account yet?&nbsp; How are you ever gonna leave your witty comments?
               <Link to="/account/register" className="alert-link">
-                Register to think your voice really matters
+                Register and make your unique voice heard!
               </Link>
             </Alert>
           </div>
         )}
-
-        <p>
-          Github link for project{' '}
-          <a href="https://github.com/tlapuste/avid-video-games" target="_blank" rel="noopener noreferrer">
-            Github
-          </a>
-          !
-        </p>
       </Col>
       <Col md="3" className="pad">
         {/*<span className="hipster rounded" />*/}

@@ -1,16 +1,20 @@
-avid video games review blog
+# The Avid Video Games review blog
+
+> Quickstart dev env: `screen -d -m -S avid "./gradlew -x webpack" && npm start`
 
 ## {A} Development
 
-### Configuring your local environment
+### Configuring your local dev environment
 
 > Before you can build this project, you must install and configure the following dependencies on your machine:
 
 #### 1. Install dev dependencies:
 
-i. Java Development Kit (obviously)
+i. docker and docker-compose
 
-ii. [Node.js](https://nodejs.org/en/): Using Node to run the dev web server for the frontend and build the frontend React SPA (npm scripts + webpack)
+ii. Java Development Kit
+
+iii. [Node.js](https://nodejs.org/en/): Using Node to run the dev web server for the frontend and build the frontend React SPA (npm scripts + webpack)
 
 #### 2. Run setup scripts
 
@@ -22,9 +26,9 @@ Run `npm install` after having installed Node, this command will install some of
 
 Run the following commands in separate terminal windows to start hot-reloading dev servers for the frontend/backend:
 
-##### [1] FRONTEND: `./gradlew -x webpack`
+##### FRONTEND: `./gradlew -x webpack`
 
-##### [2] BACKEND: `npm start`
+##### BACKEND: `npm start`
 
 ### Appendix: Simplify REST using swagger-editor and openapi-generator
 
