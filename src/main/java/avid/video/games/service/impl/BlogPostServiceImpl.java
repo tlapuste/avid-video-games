@@ -99,7 +99,7 @@ public class BlogPostServiceImpl implements BlogPostService {
         blogPostVM.setTitle(blogPost.getTitle());
         blogPostVM.setBody(blogPost.getBody());
 
-        List<BlogPostComment> blogPostCommentList = blogPostCommentRepository.findAllByComment(blogPost);
+        List<BlogPostComment> blogPostCommentList = blogPostCommentRepository.findAllByPost(blogPost);
         if (!blogPostCommentList.isEmpty()) {
             List<BlogPostCommentVM> comments = blogPostCommentList.stream().map(bpc -> {
                 User commenter = bpc.getCommenter();
